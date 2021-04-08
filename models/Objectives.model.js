@@ -4,12 +4,11 @@ const objectivesShema = new Schema({
   problem: {
     type: String,
     required: true,
-    unique: true,
 
   },
   category: {
     type: String,
-    enum: ['Career, Passion, Relationships, Finance '],
+    enum: [`Career`, `Passion`, `Relationships`, `Finance`, `Wellbeing`],
     required: true,
   },
 
@@ -31,6 +30,7 @@ const objectivesShema = new Schema({
 
   },
 
+  // Relational with action schema 
   action: {
     type: [],
     required: true,
@@ -40,20 +40,17 @@ const objectivesShema = new Schema({
     type: [],
     required: true,
 
+  },
+
+  status: {
+    type: String,
+    enum: [`Not Started`, `In-Progress`, `Completed`],
+    default: `Not-Started`,
   }
-
-
-
-
 
 
 }
 
 
 
-
-
-
-
-
-})
+)
