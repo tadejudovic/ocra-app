@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 
-const objectivesShema = new Schema({
+const objectivesSchema = new Schema({
   problem: {
     type: String,
     required: true,
@@ -51,7 +51,5 @@ const objectivesShema = new Schema({
 
 
 }
-
-
 
 )

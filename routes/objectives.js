@@ -37,6 +37,7 @@ router.post("/new-objective", (req, res) => {
   })
 
   .then((createObjective) => { 
+   console.log(createObjective)
     return res.redirect("/profile");
 
 
