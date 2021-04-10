@@ -4,6 +4,7 @@ const objectivesShema = new Schema({
   problem: {
     type: String,
     required: true,
+    default: `Not-Started`
 
   },
   category: {
