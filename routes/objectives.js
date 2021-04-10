@@ -30,20 +30,25 @@ router.get("/", isLoggedIn, (req, res) => {
 router.post("/new-objective", (req, res) => {
   const { problem, category,objectiveInput,ObjectiveEndDate,keyResult } = req.body;
   console.log(req.body)
-  res.redirect("/profile");
 
-  // This will update Objective schemas 
   Objectives.create({
-    problem,
-    category,
-    objectiveInput,
-    ObjectiveEndDate,
-    keyResult
+    problem
 
   })
 
+  .then((createObjective) => { 
+    return res.redirect("/profile");
+
+
+  })
+
+  .catch (( error) => {
+    return res.render("actions", {
+    errorMessage: "something went really wrong!!"
+   } )
+   console.log(error)
+
 })
-
-
+})
 
 module.exports = router;
