@@ -1,6 +1,17 @@
 <form action="/objectives" method="POST">
-  <input type="text" name="problem">
+  <input type="text" name="problem" placeholder="Describe the problem you want to solve">
+  <select name="category" id="">
+    <option value="Financial">Financial</option>
+    <option value="Career">Career or Passion</option>
+    <option value="Relationship">Relationships</option>
+    <option value="Wellbeing">Wellbeing</option>
 
-  <button type="submit"></button>
+  </select>
+
+  <input type="text" name="objective" placeholder="Describe the change you want to see">
+
+  <input type="date" value="2021-06-01">
+
+  <button type="submit">Submit</button>
 
 </form>
