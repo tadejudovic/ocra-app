@@ -37,6 +37,9 @@ app.use("/profile", profileRoutes);
 const objectiveRoute = require("./routes/objectives");
 app.use("/objectives", objectiveRoute);
 
+const actionsRoutes = require("./routes/actions");
+app.use("/actions", actionsRoutes);
+
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
 

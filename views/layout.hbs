@@ -10,8 +10,25 @@
 </head>
 
 <body>
+   </nav>
+   {{#if user}}
 
+   <br>
+
+
+   <br>
+   <nav>
+      <a href="/auth/logout">Logout</a>
+   </nav>
+   {{else}}
+   <nav>
+      <a href="/auth/signup">Signup</a>
+      <a href="/auth/login">Login</a>
+   </nav>
+   {{/if}}
    {{{body}}}
+
+
 
    <script src="/js/script.js"></script>
 </body>
