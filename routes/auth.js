@@ -19,16 +19,16 @@ router.get("/signup", shouldNotBeLoggedIn, (req, res) => {
 });
 
 router.post("/signup", shouldNotBeLoggedIn, (req, res) => {
-  const { name, surname, email, username, password } = req.body;
+  const { name, surname, email, password } = req.body;
 
-  if (!name || !surname || !email || !username) {
+  if (!name || !surname || !email) {
     return res
       .status(400)
-      .render("signup", { errorMessage: "Please provide your username." });
+      .render("auth/signup", { errorMessage: "Please provide your username." });
   }
 
   if (password.length < 8) {
-    return res.status(400).render("signup", {
+    return res.status(400).render("auth/signup", {
       errorMessage: "Your password needs to be at least 8 characters long.",
     });
   }
@@ -46,12 +46,12 @@ router.post("/signup", shouldNotBeLoggedIn, (req, res) => {
   */
 
   // Search the database for a user with the username submitted in the form
-  User.findOne({ username }).then((found) => {
+  User.findOne({ email }).then((found) => {
     // If the user is found, send the message username is taken
     if (found) {
       return res
         .status(400)
-        .render("signup", { errorMessage: "Username already taken." });
+        .render("auth/signup", { errorMessage: "Username already taken." });
     }
 
     // if user is not found, create a new user - start with hashing the password
@@ -61,30 +61,33 @@ router.post("/signup", shouldNotBeLoggedIn, (req, res) => {
       .then((hashedPassword) => {
         // Create a user and save it in the database
         return User.create({
-          username,
+          name,
+          surname,
+          email,
           password: hashedPassword,
         });
       })
       .then((user) => {
         // Bind the user to the session object
         req.session.user = user;
-        res.redirect("/");
+        res.redirect("/profile");
       })
       .catch((error) => {
+        console.log(error);
         if (error instanceof mongoose.Error.ValidationError) {
           return res
             .status(400)
-            .render("signup", { errorMessage: error.message });
+            .render("auth/signup", { errorMessage: error.message });
         }
         if (error.code === 11000) {
-          return res.status(400).render("signup", {
+          return res.status(400).render("auth/signup", {
             errorMessage:
               "Username need to be unique. The username you chose is already in use.",
           });
         }
         return res
           .status(500)
-          .render("signup", { errorMessage: error.message });
+          .render("auth/signup", { errorMessage: error.message });
       });
   });
 });
@@ -94,9 +97,9 @@ router.get("/login", shouldNotBeLoggedIn, (req, res) => {
 });
 
 router.post("/login", shouldNotBeLoggedIn, (req, res, next) => {
-  const { username, password } = req.body;
+  const { email, password } = req.body;
 
-  if (!username) {
+  if (!email) {
     return res
       .status(400)
       .render("login", { errorMessage: "Please provide your username." });
@@ -111,7 +114,7 @@ router.post("/login", shouldNotBeLoggedIn, (req, res, next) => {
   }
 
   // Search the database for a user with the username submitted in the form
-  User.findOne({ username })
+  User.findOne({ email })
     .then((user) => {
       // If the user isn't found, send the message that user provided wrong credentials
       if (!user) {
@@ -129,7 +132,7 @@ router.post("/login", shouldNotBeLoggedIn, (req, res, next) => {
         }
         req.session.user = user;
         // req.session.user = user._id; // ! better and safer but in this case we saving the entire user object
-        return res.redirect("/");
+        return res.redirect("/profile");
       });
     })
 
