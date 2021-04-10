@@ -6,12 +6,12 @@ const actionSchema = new Schema({
     required: true,
   },
   user: { type: Schema.Types.ObjectId, ref: "User" },
-  buddy: { type: Schema.Types.ObjectId, ref: "Objectives" },
+  objectives: { type: Schema.Types.ObjectId, ref: "Objectives" },
 
   status: {
     type: String,
-    enum: [`Not Started`, `In-Progress`, `Completed`],
-    default: `Not-Started`,
+    enum: ["Not Started", "In-Progress", "Completed"],
+    default: "Not Started",
   },
 
   picture: {
@@ -20,6 +20,6 @@ const actionSchema = new Schema({
   },
 });
 
-const Action = model("actions", actionSchema);
+const Action = model("Action", actionSchema);
 
 module.exports = Action;
