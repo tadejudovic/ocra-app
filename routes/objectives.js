@@ -28,7 +28,7 @@ router.get("/", isLoggedIn, (req, res) => {
 // Push data from form the the profile page (this is where we're gonna show a list of problems, objectives, actions)
 
 router.post("/new-objective", (req, res) => {
-  const { problem } = req.body;
+  const { problem, category,objectiveInput,ObjectiveEndDate,keyResult } = req.body;
   console.log(req.body)
   res.redirect("/profile");
 
