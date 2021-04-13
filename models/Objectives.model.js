@@ -7,7 +7,7 @@ const objectivesSchema = new Schema({
   },
   category: {
     type: String,
-    enum: ["Career", "Passion", "Relationships", "Finance", "Wellbeing"],
+    enum: ["Career", "Passion", "Relationship", "Financial", "Wellbeing"],
     required: true,
   },
 
@@ -26,11 +26,12 @@ const objectivesSchema = new Schema({
     required: true,
   },
 
-  // Relational with action schema
   action: {
-    type: [],
+    type: [{ type: Schema.Types.ObjectId, ref: "Action" }],
     required: true,
   },
+
+  user: { type: Schema.Types.ObjectId, ref: "User" },
 
   buddy: {
     type: [{ type: Schema.Types.ObjectId, ref: "User" }],

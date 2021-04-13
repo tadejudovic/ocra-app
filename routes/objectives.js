@@ -22,29 +22,78 @@ router.get("/", isLoggedIn, (req, res) => {
 
 // Push data from form the the profile page (this is where we're gonna show a list of problems, objectives, actions)
 
-router.post("/new-objective", (req, res) => {
+// router.post("/new-objective", (req, res) => {
+//   const {
+//     problem,
+//     category,
+//     objectiveInput,
+//     ObjectiveEndDate,
+//     keyResult,
+//   } = req.body;
+//   console.log(req.body);
+
+//   return Objective.create({
+//     problem,
+//   })
+//     .then((createObjective) => {
+//       console.log(createObjective);
+//       return res.redirect("/profile");
+//     })
+//     .catch((error) => {
+//       console.log(error);
+//       return res.render("actions", {
+//         errorMessage: "something went really wrong!!",
+//       });
+//     });
+// });
+
+router.post("/new-objective", isLoggedIn, (req, res) => {
   const {
     problem,
     category,
     objectiveInput,
-    ObjectiveEndDate,
+    objectiveEndDate,
     keyResult,
   } = req.body;
-  console.log(req.body);
 
-  return Objective.create({
-    problem,
-  })
-    .then((createObjective) => {
-      console.log(createObjective);
-      return res.redirect("/profile");
-    })
-    .catch((error) => {
-      console.log(error);
-      return res.render("actions", {
-        errorMessage: "something went really wrong!!",
-      });
+  console.log(req.body);
+  if (
+    !problem ||
+    !category ||
+    !objectiveInput ||
+    !objectiveEndDate ||
+    !keyResult
+  ) {
+    return res.render("objectives-form", {
+      errorMessage: "You need to write a description",
     });
+  }
+
+  Objective.findOne({ problem }).then((found) => {
+    if (found) {
+      return res.render("objectives-form", {
+        errorMessage: "You have already add this objective",
+      });
+    }
+    Objective.create({
+      problem,
+      category,
+      objectiveInput,
+      objectiveEndDate,
+      keyResult,
+      user: req.session.user._id,
+    })
+      .then((createObjective) => {
+        console.log("createObjective:", createObjective);
+        return res.redirect("/profile");
+      })
+      .catch((err) => {
+        console.log(err);
+        return res.render("objectives-form", {
+          errorMessage: "something went really wrong!!",
+        });
+      });
+  });
 });
 
 module.exports = router;
