@@ -16,7 +16,7 @@ const isLoggedIn = require("../middlewares/isLoggedIn");
 
 // Render Objectives form
 
-router.get("/", isLoggedIn, (req, res) => {
+router.get("/", /*isLoggedIn,*/(req, res) => {
   res.render("objectives-form", { user: req.session.user });
 });
 
@@ -47,7 +47,7 @@ router.get("/", isLoggedIn, (req, res) => {
 //     });
 // });
 
-router.post("/new-objective", isLoggedIn, (req, res) => {
+router.post("/new-objective", /*isLoggedIn*/(req, res) => {
   const {
     problem,
     category,
@@ -95,5 +95,16 @@ router.post("/new-objective", isLoggedIn, (req, res) => {
       });
   });
 });
+
+
+
+router.get("/delete", (req, res) => {
+  Objective.findByIdAndDelete(Objective._id)
+    .then(() => { console.log("not working") })
+})
+
+
+
+
 
 module.exports = router;

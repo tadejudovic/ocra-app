@@ -2,12 +2,12 @@ const router = require("express").Router();
 const isLoggedIn = require("../middlewares/isLoggedIn");
 const Action = require("../models/Actions.model");
 
-router.get("/", isLoggedIn, (req, res) => {
+router.get("/", /*isLoggedIn,*/(req, res) => {
   res.render("actions", { user: req.session.user });
 });
 
-router.post("/new-action", isLoggedIn, (req, res) => {
-  const { action } = req.body;
+router.post("/new-action", /*isLoggedIn,*/(req, res) => {
+  const { action } = req.bodsy;
 
   console.log(req.body);
   if (!action) {
