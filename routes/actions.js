@@ -7,7 +7,7 @@ router.get("/", isLoggedIn, (req, res) => {
 });
 
 router.post("/new-action", isLoggedIn, (req, res) => {
-  const { action } = req.body;
+  const { action } = req.bodsy;
 
   console.log(req.body);
   if (!action) {
