@@ -96,4 +96,10 @@ router.post("/new-objective", isLoggedIn, (req, res) => {
   });
 });
 
+router.get("/delete/:mufasa", (req, res) => {
+  Objective.findByIdAndDelete(req.params.mufasa).then(() => {
+    console.log("not working");
+  });
+});
+
 module.exports = router;

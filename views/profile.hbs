@@ -1,3 +1,24 @@
 <h1> welcome {{user.name}}</h1>
+
+
+{{#each obj}}
+
+<h2>{{this.problem}}</h2>
+<h2>{{this.category}}</h2>
+<a href="/actions/{{this._id}}">Create your actions</a>
+<a href="/objectives/delete/{{this._id}}">delete</a>
+<a href="/objectives/edit/{{this._id}}">Edit</a>
+{{/each}}
+
+
+<br />
 <a href="/objectives">Create new goal</a>
-<a href="/actions">Create your actions</a>
+
+
+
+
+{{!-- <a href="/objectives/delete">Delete Objective</a> --}}
+
+// find all doc in obj model by id user
+// send to hbs
+// loop to every obj and render in ancor tag
