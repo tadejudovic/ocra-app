@@ -1,13 +1,18 @@
 const router = require("express").Router();
 const isLoggedIn = require("../middlewares/isLoggedIn");
 const Action = require("../models/Actions.model");
+const Objective = require("../models/Objectives.model");
 
-router.get("/", isLoggedIn, (req, res) => {
-  res.render("actions", { user: req.session.user });
-});
+router.post("/new-action/:random", isLoggedIn, (req, res) => {
+  // Objective.findById(req.params.mufasa).then((event) => {
+  //   if (!event) {
+  //     return res.redirect("/");
+  //   }
+  //   if (!event.user.includes(req.session._id)) {
+  //     return res.redirect("/");
+  //   }
 
-router.post("/new-action", isLoggedIn, (req, res) => {
-  const { action } = req.bodsy;
+  const { action } = req.body;
 
   console.log(req.body);
   if (!action) {
@@ -39,8 +44,8 @@ router.post("/new-action", isLoggedIn, (req, res) => {
   });
 });
 
-
-
-
+router.get("/:random", isLoggedIn, (req, res) => {
+  res.render("actions", { user: req.session.user });
+});
 
 module.exports = router;

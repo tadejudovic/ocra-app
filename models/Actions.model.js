@@ -18,6 +18,11 @@ const actionSchema = new Schema({
     type: String,
     default: "",
   },
+
+  actionEndDate: {
+    type: Date,
+    required: true,
+  },
 });
 
 const Action = model("Action", actionSchema);

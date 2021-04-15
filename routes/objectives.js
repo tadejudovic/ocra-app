@@ -97,8 +97,26 @@ router.post("/new-objective", isLoggedIn, (req, res) => {
 });
 
 router.get("/delete/:mufasa", isLoggedIn, (req, res) => {
+  Objective.findById(req.params.mufasa).then((event) => {
+    if (!event) {
+      return res.redirect("/");
+    }
+    if (!event.user.includes(req.session._id)) {
+      return res.redirect("/");
+    }
+  });
   Objective.findByIdAndDelete(req.params.mufasa).then(() => {
-    console.log("not working");
+    return res.redirect("/profile");
+  });
+});
+
+router.get("/edit/:random", isLoggedIn, (req, res) => {
+  Objective.findById(req.params.random).then((obj) => {
+    console.log(obj);
+    res.render("edit-objectives", {
+      user: req.session.user,
+      obj,
+    });
   });
 });
 

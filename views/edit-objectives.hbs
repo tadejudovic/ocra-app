@@ -1,0 +1,32 @@
+<h1> welcome {{user.name}} to the edit page of {{obj.problem}}</h1>
+
+<a href="/profile">Go to my profile</a>
+
+<br />
+<br />
+{{#with obj}}
+
+<form method="POST" action="/objective/edit">
+  <label for="">Problem</label>
+  <input name="problem" value="{{problem}}">
+  <br>
+  <label>Category</label>
+  <input name="category" value="{{category}}">
+  <br>
+  <label for="">objectiveEndDate</label>
+  <input name="problem" value="{{objectiveEndDate}}">
+  <br>
+  <label for="">objectiveInput</label>
+  <input name="problem" value="{{objectiveInput}}">
+  <br>
+  <label for="">keyResult</label>
+  <input name="keyresult" value="{{keyResult}}">
+
+  <button type="submit">Edit your objective</button>
+</form>
+
+<br />
+<a href="/actions/{{this._id}}">Create the actions you need to achieve your goal!</a>
+<br />
+
+{{/with}}

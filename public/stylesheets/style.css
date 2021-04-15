@@ -1,13 +1,13 @@
 body {
   padding: 0;
-  margin: 0;
+  margin: 30px;
   top: 0;
   display: inline;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 html {
-  margin: 0;
+  margin: 30px;
   padding: 0;
 }
 
@@ -38,4 +38,5 @@ nav {
   font-size: 18px;
   font-weight: 400;
 }
+
 /*# sourceMappingURL=style.css.map */

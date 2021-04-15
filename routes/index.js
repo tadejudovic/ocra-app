@@ -16,7 +16,7 @@ router.get("/", (req, res, next) => {
     console.log("obj:", obj);
     return res.render("profile", {
       user: req.session.user,
-      obj: { problem: obj.problem, category: obj.category },
+      obj,
     });
   });
 });
