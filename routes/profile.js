@@ -13,8 +13,29 @@ router.get("/", isLoggedIn, (req, res, next) => {
     res.render("profile", {
       user: req.session.user,
       obj,
+    
     });
   });
 });
 
+
+
 module.exports = router;
+
+
+/*
+{
+    action: [],
+    buddy: [],
+    status: 'Not Started',
+    _id: 607877c4135e401726ad287b,
+    problem: 'Run a marathon',
+    category: 'Wellbeing',
+    objectiveInput: 'speed',
+    objectiveEndDate: 2021-04-20T00:00:00.000Z,
+    keyResult: '42km',
+    user: 607162fccedb7aaba30a33e4,
+    __v: 0
+  }
+
+*/
