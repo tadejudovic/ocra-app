@@ -30,6 +30,7 @@ router.post("/new-action", isLoggedIn, (req, res) => {
     Action.create({
       action,
       user: req.session.user._id,
+      actionEndDate
     })
       .then((createAction) => {
         console.log("createAction:", createAction);
