@@ -12,7 +12,7 @@ router.post("/new-action", isLoggedIn, (req, res) => {
   //     return res.redirect("/");
   //   }
 
-  const { action } = req.body;
+  const { action, actionEndDate } = req.body;
 
   console.log(req.body);
   if (!action) {
