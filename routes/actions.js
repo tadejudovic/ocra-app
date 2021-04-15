@@ -44,8 +44,8 @@ router.post("/new-action", isLoggedIn, (req, res) => {
   });
 });
 
-router.get("/:random", isLoggedIn, (req, res) => {
-  res.render("actions", { user: req.session.user });
-});
+//router.get("/:random", isLoggedIn, (req, res) => {
+ // res.render("actions", { user: req.session.user });
+
 
 module.exports = router;
