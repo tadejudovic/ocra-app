@@ -48,6 +48,7 @@ router.get("/", isLoggedIn, (req, res) => {
 // });
 
 router.post("/new-objective", isLoggedIn, (req, res) => {
+  console.log(req.body.objectiveEndDate);
   const {
     problem,
     category,
@@ -113,11 +114,31 @@ router.get("/delete/:mufasa", isLoggedIn, (req, res) => {
 router.get("/edit/:random", isLoggedIn, (req, res) => {
   Objective.findById(req.params.random).then((obj) => {
     console.log(obj);
+    console.log("YAUUUZA");
+    console.log({ ...obj.toJSON() });
     res.render("edit-objectives", {
       user: req.session.user,
-      obj,
+      obj: {
+        ...obj.toJSON(),
+        objectiveEndDate: obj.objectiveEndDate.toISOString().split("T")[0],
+
+        currentObjCategory: obj.category,
+        categories: [
+          "Financial",
+          "Career",
+          "Relationship",
+          "Wellbeing",
+          "Passion",
+        ].filter((category) => !(category === obj.category)),
+      },
     });
   });
 });
+
+// router.post("/edit/:random", isLoggedIn, (req, res) => {
+//   const { problem, category, objectiveInput, objectiveEndDate, keyResult} = req.body;
+
+//   Objective.findById(req.params.random)
+// });
 
 module.exports = router;

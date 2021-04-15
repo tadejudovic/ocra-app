@@ -6,21 +6,34 @@
 <br />
 {{#with obj}}
 
+
 <form method="POST" action="/objective/edit">
-  <label for="">Problem</label>
-  <input name="problem" value="{{problem}}">
+
   <br>
-  <label>Category</label>
-  <input name="category" value="{{category}}">
+  <label>Problem</label>
+  <input name="problme" value="{{problem}}">
+  <br>
+  <label>Status</label>
+  <input name="status" value="{{status}}">
   <br>
   <label for="">objectiveEndDate</label>
-  <input name="problem" value="{{objectiveEndDate}}">
+  <input type=" date" name="date" value={{objectiveEndDate}}>
   <br>
   <label for="">objectiveInput</label>
   <input name="problem" value="{{objectiveInput}}">
   <br>
   <label for="">keyResult</label>
   <input name="keyresult" value="{{keyResult}}">
+  <br>
+  <label for="">category</label>
+
+
+  <select name="cateogry" id="category">
+    <option value="{{currentObjCategory}}" selected>{{currentObjCategory}}</option>
+    {{#each categories}}
+    <option value="{{this}}">{{this}}</option>
+    {{/each}}
+  </select>
 
   <button type="submit">Edit your objective</button>
 </form>
