@@ -3,14 +3,16 @@ const isLoggedIn = require("../middlewares/isLoggedIn");
 const Action = require("../models/Actions.model");
 const Objective = require("../models/Objectives.model");
 
-router.post("/new-action", isLoggedIn, (req, res) => {
-  // Objective.findById(req.params.mufasa).then((event) => {
-  //   if (!event) {
-  //     return res.redirect("/");
-  //   }
-  //   if (!event.user.includes(req.session._id)) {
-  //     return res.redirect("/");
-  //   }
+router.post("/new-action/:random", isLoggedIn, (req, res) => {
+  Objective.findById(req.params.random).then((event) => {
+  if (!event) {
+    return res.redirect("/");
+    }
+   if (!event.user.includes(req.session._id)) {
+       return res.redirect("/");
+    }
+
+
 
   const { action, actionEndDate } = req.body;
 
@@ -30,7 +32,9 @@ router.post("/new-action", isLoggedIn, (req, res) => {
     Action.create({
       action,
       user: req.session.user._id,
-      actionEndDate
+      actionEndDate,
+     
+      
     })
       .then((createAction) => {
         console.log("createAction:", createAction);
