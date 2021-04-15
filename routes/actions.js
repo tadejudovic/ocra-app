@@ -3,7 +3,7 @@ const isLoggedIn = require("../middlewares/isLoggedIn");
 const Action = require("../models/Actions.model");
 const Objective = require("../models/Objectives.model");
 
-router.post("/new-action", isLoggedIn, (req, res) => {
+router.post("/new-action/:random", isLoggedIn, (req, res) => {
   // Objective.findById(req.params.mufasa).then((event) => {
   //   if (!event) {
   //     return res.redirect("/");
