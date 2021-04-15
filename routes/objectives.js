@@ -96,7 +96,7 @@ router.post("/new-objective", isLoggedIn, (req, res) => {
   });
 });
 
-router.get("/delete/:mufasa", (req, res) => {
+router.get("/delete/:mufasa", isLoggedIn, (req, res) => {
   Objective.findByIdAndDelete(req.params.mufasa).then(() => {
     console.log("not working");
   });
