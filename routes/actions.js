@@ -74,7 +74,7 @@ router.get(
         return res.redirect("/");
       }
     });
-    Action.findByIdAndDelete(req.params.mufasa).then(() => {
+    Action.findByIdAndDelete(req.params.dynamic).then(() => {
       return res.redirect("/profile");
     });
   }
