@@ -95,7 +95,7 @@ router.get(
         .render("edit-actions", {
           user: req.session.user,
           action: {
-            action: action,
+            action: action.action,
           },
         })
 
@@ -109,3 +109,4 @@ router.get(
   }
 );
 module.exports = router;
+
