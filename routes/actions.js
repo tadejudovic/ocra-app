@@ -108,5 +108,19 @@ router.get(
     });
   }
 );
+
+router.post("/edit/:dynamic", /*isLoggedIn,*/ (req,res)=> {
+  const {action,actionEndDate}=req.body;
+  Action.findByIdAndUpdate(
+    req.params.dynamic,
+    {action,actionEndDate},
+    {new:true}
+  )
+.then((newAction)=>
+res.redirect("/profile")
+)
+})
+
+
 module.exports = router;
 
