@@ -14,8 +14,13 @@
   <h2>Result: {{this.keyResult}}</h2>
   {{#each action}}
   <h2>Action: {{this.action}}</h2>
-
+  <a href="/actions/delete/{{this._id}}">Delete Action</a>
+  <br />
+  <a href="/actions/edit/{{this._id}}">Edit Action</a>
+  <br />
   {{/each}}
+  <br />
+  <br />
   <a href="/objectives/delete/{{this._id}}">Delete the Problem</a>
   <br />
   <br />
@@ -24,9 +29,7 @@
   <br />
   <a href="/actions/new-action/{{this._id}}">Create New action</a>
 
-  <a href="/actions/delete/{{this._id}}">Delete Action</a>
 
-  <a href="/actions/edit/{{this._id}}">Edit Action</a>
 
   <br />
 </section>
