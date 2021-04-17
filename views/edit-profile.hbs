@@ -2,7 +2,7 @@
 
 {{#with user}}
 
-<form method="POST" action="/profile/edit">
+<form method="POST" action="/profile/edit" enctype="multipart/form-data">
   <label for="">Name</label>
   <input name="name" value="{{name}}">
   <label for="">Surname</label>
@@ -13,6 +13,9 @@
   <br>
   <label for="">Email</label>
   <input type="email" name="email" value={{email}}>
+  <br>
+  <label for="">Picture</label>
+  <input type="file" name="profilePic">
 
   <button type="submit">Edit your profile</button>
 </form>

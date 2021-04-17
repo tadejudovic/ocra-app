@@ -1,4 +1,7 @@
-<h1> {{user.name}}</h1>
+{{#with user}}
+<h1> {{name}}</h1>
+<img src="{{profilePic}}">
+{{/with}}
 <br />
 <a href="/profile/edit">Edit my profile</a>
 <br />
@@ -13,11 +16,13 @@
   <h2>End Date: {{this.objectiveEndDate}}</h2>
   <h2>Result: {{this.keyResult}}</h2>
   {{#each action}}
-  <h2>Action: {{this.action}}</h2>
-  <a href="/actions/delete/{{this._id}}">Delete Action</a>
-  <br />
-  <a href="/actions/edit/{{this._id}}">Edit Action</a>
-  <br />
+  <section style="border: solid 3px; width:400px; color: grey; padding: 10px">
+    <h2>Action: {{this.action}}</h2>
+    <a href="/actions/delete/{{this._id}}">Delete Action</a>
+    <br />
+    <a href="/actions/edit/{{this._id}}">Edit Action</a>
+    <br />
+  </section>
   {{/each}}
   <br />
   <br />
