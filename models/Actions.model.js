@@ -6,7 +6,8 @@ const actionSchema = new Schema({
     required: true,
   },
   user: { type: Schema.Types.ObjectId, ref: "User" },
-  objectives: { type: Schema.Types.ObjectId, ref: "Objectives" },
+  // One way linking is enough, we can remove this later
+  // objectives: { type: Schema.Types.ObjectId, ref: "Objectives" },
 
   status: {
     type: String,

@@ -3,16 +3,13 @@ const isLoggedIn = require("../middlewares/isLoggedIn");
 const Action = require("../models/Actions.model");
 const Objective = require("../models/Objectives.model");
 
-router.post("/new-action/:random", isLoggedIn, (req, res) => {
-  // Objective.findById(req.params.mufasa).then((event) => {
-  //   if (!event) {
-  //     return res.redirect("/");
-  //   }
-  //   if (!event.user.includes(req.session._id)) {
-  //     return res.redirect("/");
-  //   }
+router.get("/new-action/:dynamic", isLoggedIn, (req, res) => {
+  res.render("actions", { user: req.session.user });
+});
 
+router.post("/new-action/:dynamic", isLoggedIn, (req, res) => {
   const { action, actionEndDate } = req.body;
+  let objId = req.params.dynamic;
 
   console.log(req.body);
   if (!action || !actionEndDate) {
@@ -32,6 +29,16 @@ router.post("/new-action/:random", isLoggedIn, (req, res) => {
       actionEndDate,
       user: req.session.user._id,
     })
+      .then((updateObj) => {
+        console.log("updated Obj:", updateObj);
+        Objective.findByIdAndUpdate(
+          objId,
+          {
+            $push: { action: "hahah" },
+          },
+          { new: true }
+        );
+      })
       .then((createAction) => {
         console.log("createAction:", createAction);
         return res.redirect("/profile");
@@ -43,10 +50,6 @@ router.post("/new-action/:random", isLoggedIn, (req, res) => {
         });
       });
   });
-});
-
-router.get("/:random", isLoggedIn, (req, res) => {
-  res.render("actions", { user: req.session.user });
 });
 
 module.exports = router;

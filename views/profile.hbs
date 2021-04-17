@@ -12,14 +12,14 @@
   <h2>Goal: {{this.objectiveInput}}</h2>
   <h2>End Date: {{this.objectiveEndDate}}</h2>
   <h2>Result: {{this.keyResult}}</h2>
-  <h2>Result: {{this.action}}</h2>
+  <h2>Action: {{this.action}}</h2>
   <a href="/objectives/delete/{{this._id}}">Delete the Problem</a>
   <br />
   <br />
   <a href="/objectives/edit/{{this._id}}">Edit the Problem</a>
   <br />
   <br />
-  <a href="/actions/{{this._id}}">Create the actions you need to achieve your goal!</a>
+  <a href="/actions/new-action/{{this._id}}">Create the actions you need to achieve your goal!</a>
   <br />
 </section>
 {{/each}}
