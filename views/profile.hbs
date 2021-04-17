@@ -13,7 +13,8 @@
   <h2>End Date: {{this.objectiveEndDate}}</h2>
   <h2>Result: {{this.keyResult}}</h2>
   {{#each action}}
-  <h2>Action: {{this.action}}</h2>
+  <p>Actions</p>
+  <h2>{{this.action}}</h2>
   <a href="/actions/delete/{{this._id}}">Delete Action</a>
   <br />
   <a href="/actions/edit/{{this._id}}">Edit Action</a>
