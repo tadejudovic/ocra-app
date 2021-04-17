@@ -3,15 +3,22 @@ const isLoggedIn = require("../middlewares/isLoggedIn");
 const Action = require("../models/Actions.model");
 const Objective = require("../models/Objectives.model");
 
-router.get("/new-action/:dynamic", isLoggedIn, (req, res) => {
-  res.render("actions", { user: req.session.user });
+router.get("/new-action/:pleaseworks", isLoggedIn, (req, res) => {
+  //console.log(" ajhahhaha:", req.params.pleaseworks);
+  Objective.findById(req.params.pleaseworks).then((obj) => {
+    res.render("actions", {
+      user: req.session.user,
+      objectiveId: obj._id,
+    });
+  });
 });
 
-router.post("/new-action/:dynamic", isLoggedIn, (req, res) => {
+router.post("/new-action/:pleaseworks", isLoggedIn, (req, res) => {
   const { action, actionEndDate } = req.body;
-  let objId = req.params.dynamic;
+  let objId = req.params.pleaseworks;
+  console.log("ObjectiveId", objId);
 
-  console.log(req.body);
+  //console.log(req.body);
   if (!action || !actionEndDate) {
     return res.render("actions", {
       errorMessage: "You need to write a description",
@@ -28,19 +35,20 @@ router.post("/new-action/:dynamic", isLoggedIn, (req, res) => {
       action,
       actionEndDate,
       user: req.session.user._id,
+      objectives: objId,
     })
       .then((updateObj) => {
-        console.log("updated Obj:", updateObj);
+        //console.log("updated Obj:", updateObj._id);
         Objective.findByIdAndUpdate(
-          objId,
+          updateObj.objectives,
           {
-            $push: { action: "hahah" },
+            $push: { action: objId },
           },
           { new: true }
         );
       })
       .then((createAction) => {
-        console.log("createAction:", createAction);
+        //console.log("createAction:", createAction);
         return res.redirect("/profile");
       })
       .catch((err) => {
