@@ -11,7 +11,6 @@ router.get("/", isLoggedIn, (req, res, next) => {
     res.render("profile", {
       user: req.session.user,
       obj,
-      action,
     });
   });
 });
