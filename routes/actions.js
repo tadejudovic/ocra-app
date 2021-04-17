@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const isLoggedIn = require("../middlewares/isLoggedIn");
+const { events } = require("../models/Actions.model");
 const Action = require("../models/Actions.model");
 const Objective = require("../models/Objectives.model");
 
@@ -63,4 +64,48 @@ router.post("/new-action/:objectiveId", isLoggedIn, (req, res) => {
   });
 });
 
+// Find and delete a particular Actions
+
+router.get(
+  "/delete/:dynamic",
+  /*isLoggedIn,*/ (req, res) => {
+    Action.findById(req.params.dynamic).then((event) => {
+      if (!event) {
+        return res.redirect("/");
+      }
+      if (!event.user.includes(req.session._id)) {
+        return res.redirect("/");
+      }
+    });
+    Action.findByIdAndDelete(req.params.dynamic).then(() => {
+      return res.redirect("/profile");
+    });
+  }
+);
+
+// Edit a particular action
+
+// Get values from the form 
+
+router.get(
+  "/edit/:dynamic",
+  /*isLoggedIn*/ (req, res) => {
+    Action.findById(req.params.dynamic).then((action) => {
+      res
+        .render("edit-actions", {
+          user: req.session.user,
+          action: {
+            action: "random",
+          },
+        })
+
+        .catch((err) => {
+          console.log(err);
+          return res.render("/profile", {
+            errorMessage: "something went really wrong!!",
+          });
+        });
+    });
+  }
+);
 module.exports = router;
