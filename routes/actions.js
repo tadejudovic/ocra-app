@@ -8,17 +8,11 @@ router.get("/new-action/:dynamic", isLoggedIn, (req, res) => {
 });
 
 router.post("/new-action/:dynamic", isLoggedIn, (req, res) => {
-
-
-//TODO:
-// CREATE THE ACTION
-// THEN YOU UPDATE THE OBJECTIVE WITH THE ACTION'S ID
-// THEN REDIRECT USER TO PROFILE (OR ANOTHER PAGE OF YOUR CHOICE)
-
-  const { action, actionEndDate} = req.body;
+  const { action, actionEndDate } = req.body;
+  let objId = req.params.dynamic;
 
   console.log(req.body);
-  if (!action) {
+  if (!action || !actionEndDate) {
     return res.render("actions", {
       errorMessage: "You need to write a description",
     });
@@ -35,6 +29,16 @@ router.post("/new-action/:dynamic", isLoggedIn, (req, res) => {
       actionEndDate,
       user: req.session.user._id,
     })
+      .then((updateObj) => {
+        console.log("updated Obj:", updateObj);
+        Objective.findByIdAndUpdate(
+          objId,
+          {
+            $push: { action: "hahah" },
+          },
+          { new: true }
+        );
+      })
       .then((createAction) => {
         console.log("createAction:", createAction);
         return res.redirect("/profile");
@@ -46,20 +50,6 @@ router.post("/new-action/:dynamic", isLoggedIn, (req, res) => {
         });
       });
   });
-
-  Objective.findByIdAndUpdate(req.params.dynamic, {action:action},
-                            function (err, docs) {
-    if (err){
-        console.log(err)
-    }
-    else{
-        console.log("Updated objectives", docs);
-    }
-});
-  
-
 });
 
 module.exports = router;
-
-

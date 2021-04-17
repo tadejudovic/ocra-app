@@ -48,7 +48,7 @@ router.get("/", isLoggedIn, (req, res) => {
 // });
 
 router.post("/new-objective", isLoggedIn, (req, res) => {
-  console.log(req.body.objectiveEndDate);
+  // console.log(req.body.objectiveEndDate);
   const {
     problem,
     category,
@@ -85,7 +85,7 @@ router.post("/new-objective", isLoggedIn, (req, res) => {
       user: req.session.user._id,
     })
       .then((createObjective) => {
-        console.log("createObjective:", createObjective);
+        // console.log("createObjective:", createObjective);
         return res.redirect("/profile");
       })
       .catch((err) => {
@@ -112,33 +112,59 @@ router.get("/delete/:mufasa", isLoggedIn, (req, res) => {
 });
 
 router.get("/edit/:random", isLoggedIn, (req, res) => {
-  Objective.findById(req.params.random).then((obj) => {
-    console.log(obj);
-    console.log("YAUUUZA");
-    console.log({ ...obj.toJSON() });
-    res.render("edit-objectives", {
-      user: req.session.user,
-      obj: {
-        ...obj.toJSON(),
-        objectiveEndDate: obj.objectiveEndDate.toISOString().split("T")[0],
+  Objective.findById(req.params.random)
+    .then((obj) => {
+      // console.log(obj);
+      //console.log("YAUUUZA");
+      // console.log({ ...obj.toJSON() });
+      res.render("edit-objectives", {
+        user: req.session.user,
+        obj: {
+          ...obj.toJSON(),
+          objectiveEndDate: obj.objectiveEndDate.toISOString().split("T")[0],
+          objectiveId: obj._id,
+          currentObjCategory: obj.category,
+          categories: [
+            "Financial",
+            "Career",
+            "Relationship",
+            "Wellbeing",
+            "Passion",
+          ].filter((category) => !(category === obj.category)),
 
-        currentObjCategory: obj.category,
-        categories: [
-          "Financial",
-          "Career",
-          "Relationship",
-          "Wellbeing",
-          "Passion",
-        ].filter((category) => !(category === obj.category)),
-      },
+          currentStatus: obj.status,
+          statusList: ["Not Started", "In-Progress", "Completed"].filter(
+            (stat) => !(stat === obj.status)
+          ),
+        },
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      return res.render("/profile", {
+        errorMessage: "something went really wrong!!",
+      });
     });
-  });
 });
 
-// router.post("/edit/:random", isLoggedIn, (req, res) => {
-//   const { problem, category, objectiveInput, objectiveEndDate, keyResult} = req.body;
-
-//   Objective.findById(req.params.random)
-// });
+router.post("/edit/:dynamic/update", isLoggedIn, (req, res) => {
+  const {
+    problem,
+    category,
+    objectiveInput,
+    objectiveEndDate,
+    keyResult,
+    status,
+  } = req.body;
+  console.log("LOOOOOOOOK", req.body);
+  Objective.findByIdAndUpdate(
+    req.params.dynamic,
+    { problem, category, objectiveInput, objectiveEndDate, keyResult, status },
+    { new: true }
+  ).then((newObj) => {
+    // console.log("newObj:", newObj);
+    res.redirect("/profile");
+  });
+});
 
 module.exports = router;

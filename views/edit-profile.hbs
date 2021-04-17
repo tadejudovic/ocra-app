@@ -1,0 +1,20 @@
+<h6>Welcome to your edit page</h6>
+
+{{#with user}}
+
+<form method="POST" action="/profile/edit">
+  <label for="">Name</label>
+  <input name="name" value="{{name}}">
+  <label for="">Surname</label>
+  <input name="surname" value="{{surname}}">
+  <br>
+  <label>Location</label>
+  <input name="locations" value="{{locations}}">
+  <br>
+  <label for="">Email</label>
+  <input type="email" name="email" value={{email}}>
+
+  <button type="submit">Edit your profile</button>
+</form>
+
+{{/with}}
