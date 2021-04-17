@@ -24,7 +24,7 @@ router.post("/new-action/:pleaseworks", isLoggedIn, (req, res) => {
       errorMessage: "You need to write a description",
     });
   }
-
+ 
   Action.findOne({ action }).then((found) => {
     if (found) {
       return res.render("actions", {
