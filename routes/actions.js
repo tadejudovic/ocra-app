@@ -95,7 +95,7 @@ router.get(
         .render("edit-actions", {
           user: req.session.user,
           action: {
-            action: "random",
+            action: action,
           },
         })
 
