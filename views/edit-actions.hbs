@@ -4,8 +4,13 @@
 <br />
 <br />
 
-{{#with obj}}
+{{#with action}}
 
-<input name="action" value="{{action}}">
+<form action="" method="POST">
 
+  <input name="action" value="{{action}}">
+  <input type="date" name="actionEndDate" value={{actionEndDate}}>
+  <button type="submit">Make Changes</button>
+
+</form>
 {{/with}}
