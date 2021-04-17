@@ -7,30 +7,34 @@
 {{#with obj}}
 
 
-<form method="POST" action="/objective/edit">
+<form method="POST" action="/objectives/edit/{{objectiveId}}/update">
 
   <br>
   <label>Problem</label>
-  <input name="problme" value="{{problem}}">
-  <br>
-  <label>Status</label>
-  <input name="status" value="{{status}}">
+  <input name="problem" value="{{problem}}">
+
   <br>
   <label for="">objectiveEndDate</label>
-  <input type=" date" name="date" value={{objectiveEndDate}}>
+  <input type="date" name="objectiveEndDate" value={{objectiveEndDate}}>
   <br>
   <label for="">objectiveInput</label>
-  <input name="problem" value="{{objectiveInput}}">
+  <input name="objectiveInput" value="{{objectiveInput}}">
   <br>
   <label for="">keyResult</label>
-  <input name="keyresult" value="{{keyResult}}">
+  <input name="keyResult" value="{{keyResult}}">
   <br>
   <label for="">category</label>
-
-
-  <select name="cateogry" id="category">
+  <select name="category" id="category">
     <option value="{{currentObjCategory}}" selected>{{currentObjCategory}}</option>
     {{#each categories}}
+    <option value="{{this}}">{{this}}</option>
+    {{/each}}
+  </select>
+  <br>
+  <label for="">Status</label>
+  <select name="status" id="status">
+    <option value="{{currentStatus}}" selected>{{currentStatus}}</option>
+    {{#each statusList}}
     <option value="{{this}}">{{this}}</option>
     {{/each}}
   </select>
