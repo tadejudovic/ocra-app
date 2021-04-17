@@ -3,16 +3,19 @@ const isLoggedIn = require("../middlewares/isLoggedIn");
 const Action = require("../models/Actions.model");
 const Objective = require("../models/Objectives.model");
 
-router.post("/new-action/:random", isLoggedIn, (req, res) => {
-  // Objective.findById(req.params.mufasa).then((event) => {
-  //   if (!event) {
-  //     return res.redirect("/");
-  //   }
-  //   if (!event.user.includes(req.session._id)) {
-  //     return res.redirect("/");
-  //   }
+router.get("/new-action/:dynamic", isLoggedIn, (req, res) => {
+  res.render("actions", { user: req.session.user });
+});
 
-  const { action } = req.body;
+router.post("/new-action/:dynamic", isLoggedIn, (req, res) => {
+
+
+//TODO:
+// CREATE THE ACTION
+// THEN YOU UPDATE THE OBJECTIVE WITH THE ACTION'S ID
+// THEN REDIRECT USER TO PROFILE (OR ANOTHER PAGE OF YOUR CHOICE)
+
+  const { action, actionEndDate } = req.body;
 
   console.log(req.body);
   if (!action) {
@@ -29,8 +32,8 @@ router.post("/new-action/:random", isLoggedIn, (req, res) => {
     }
     Action.create({
       action,
+      actionEndDate,
       user: req.session.user._id,
-      actionEndDate
     })
       .then((createAction) => {
         console.log("createAction:", createAction);
@@ -43,10 +46,20 @@ router.post("/new-action/:random", isLoggedIn, (req, res) => {
         });
       });
   });
-});
 
-router.get("/:random", isLoggedIn, (req, res) => {
-  res.render("actions", { user: req.session.user });
+  Objective.findByIdAndUpdate(req.params.dynamic, {action:action},
+                            function (err, docs) {
+    if (err){
+        console.log(err)
+    }
+    else{
+        console.log("Updated objectives", docs);
+    }
+});
+  
+
 });
 
 module.exports = router;
+
+
