@@ -12,10 +12,10 @@ router.post("/new-action/:random", isLoggedIn, (req, res) => {
   //     return res.redirect("/");
   //   }
 
-  const { action } = req.body;
+  const { action, actionEndDate } = req.body;
 
   console.log(req.body);
-  if (!action) {
+  if (!action || !actionEndDate) {
     return res.render("actions", {
       errorMessage: "You need to write a description",
     });
@@ -29,6 +29,7 @@ router.post("/new-action/:random", isLoggedIn, (req, res) => {
     }
     Action.create({
       action,
+      actionEndDate,
       user: req.session.user._id,
     })
       .then((createAction) => {
