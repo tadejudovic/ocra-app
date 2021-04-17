@@ -13,10 +13,10 @@ router.get("/new-action/:pleaseworks", isLoggedIn, (req, res) => {
   });
 });
 
-router.post("/new-action/:pleaseworks", isLoggedIn, (req, res) => {
+router.post("/new-action/:objectiveId", isLoggedIn, (req, res) => {
   const { action, actionEndDate } = req.body;
-  let objId = req.params.pleaseworks;
-  console.log("ObjectiveId", objId);
+  const objId = req.params.objectiveId;
+  //console.log("ObjectiveId", objId);
 
   //console.log(req.body);
   if (!action || !actionEndDate) {
@@ -24,31 +24,34 @@ router.post("/new-action/:pleaseworks", isLoggedIn, (req, res) => {
       errorMessage: "You need to write a description",
     });
   }
- 
+
   Action.findOne({ action }).then((found) => {
     if (found) {
       return res.render("actions", {
         errorMessage: "You have already add this action",
       });
     }
+
     Action.create({
       action,
       actionEndDate,
       user: req.session.user._id,
       objectives: objId,
     })
-      .then((updateObj) => {
-        //console.log("updated Obj:", updateObj._id);
-        Objective.findByIdAndUpdate(
-          updateObj.objectives,
+      .then((createdAction) => {
+        //console.log("actioncreated:", createdAction);
+        //console.log("updated Obj:", createdAction.objective);
+
+        return Objective.findByIdAndUpdate(
+          createdAction.objectives,
           {
-            $push: { action: objId },
+            $push: { action: createdAction._id },
           },
           { new: true }
         );
       })
-      .then((createAction) => {
-        //console.log("createAction:", createAction);
+      .then(() => {
+        //console.log("createAction:", objUpdated);
         return res.redirect("/profile");
       })
       .catch((err) => {

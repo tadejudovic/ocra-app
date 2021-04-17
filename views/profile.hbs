@@ -5,14 +5,17 @@
 <a href="/objectives">Create new goal</a>
 <br />
 <br />
-{{#each obj}}
+{{#each objective}}
 <section style="border: solid 3px; width:600px; color: grey; padding: 10px">
   <h2>Problem: {{this.problem}}</h2>
   <h2>Category: {{this.category}}</h2>
   <h2>Goal: {{this.objectiveInput}}</h2>
   <h2>End Date: {{this.objectiveEndDate}}</h2>
   <h2>Result: {{this.keyResult}}</h2>
+  {{#each action}}
   <h2>Action: {{this.action}}</h2>
+
+  {{/each}}
   <a href="/objectives/delete/{{this._id}}">Delete the Problem</a>
   <br />
   <br />

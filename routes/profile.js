@@ -8,13 +8,15 @@ const Objective = require("../models/Objectives.model");
 router.get("/", isLoggedIn, (req, res, next) => {
   Objective.find({
     user: { $in: req.session.user._id },
-  }).then((obj) => {
-    console.log("obj:", obj);
-    res.render("profile", {
-      user: req.session.user,
-      obj,
+  })
+    .populate("action")
+    .then((objective) => {
+      console.log("wazzzaaaa:", objective);
+      res.render("profile", {
+        user: req.session.user,
+        objective,
+      });
     });
-  });
 });
 
 router.get("/edit", isLoggedIn, (req, res) => {

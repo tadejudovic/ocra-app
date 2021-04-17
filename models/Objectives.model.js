@@ -28,7 +28,6 @@ const objectivesSchema = new Schema({
 
   action: {
     type: [{ type: Schema.Types.ObjectId, ref: "Action" }],
-    required: true,
   },
 
   user: { type: Schema.Types.ObjectId, ref: "User" },
