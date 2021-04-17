@@ -15,7 +15,7 @@ router.post("/new-action/:dynamic", isLoggedIn, (req, res) => {
 // THEN YOU UPDATE THE OBJECTIVE WITH THE ACTION'S ID
 // THEN REDIRECT USER TO PROFILE (OR ANOTHER PAGE OF YOUR CHOICE)
 
-  const { action, actionEndDate } = req.body;
+  const { action, actionEndDate} = req.body;
 
   console.log(req.body);
   if (!action) {
@@ -23,7 +23,7 @@ router.post("/new-action/:dynamic", isLoggedIn, (req, res) => {
       errorMessage: "You need to write a description",
     });
   }
-
+ 
   Action.findOne({ action }).then((found) => {
     if (found) {
       return res.render("actions", {
