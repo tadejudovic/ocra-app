@@ -19,7 +19,7 @@ router.get("/", (req, res, next) => {
     Action.find(objective._id)
       .populate("objectives")
       .then((view) => {
-        console.log("wazzza:", view);
+        console.log("baaaa:", view);
         res.render("profile", {
           user: req.session.user,
           view,

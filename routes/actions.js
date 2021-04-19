@@ -85,28 +85,47 @@ router.get(
 
 // Edit a particular action
 
-// Get values from the form 
+// Get values from the form
 
 router.get(
   "/edit/:dynamic",
   /*isLoggedIn*/ (req, res) => {
-    Action.findById(req.params.dynamic).then((action) => {
-      res
-        .render("edit-actions", {
+    Action.findById(req.params.dynamic)
+      .then((action) => {
+        console.log("wazzaa:", action);
+        return res.render("edit-actions", {
           user: req.session.user,
           action: {
-            action: action.action,
+            ...action.toJSON(),
+            actionEndDate: action.actionEndDate.toISOString().split("T")[0],
+            actionId: action._id,
+            currentStatus: action.status,
+            statusList: ["Not Started", "In-Progress", "Completed"].filter(
+              (status) => !(status === action.status)
+            ),
           },
-        })
-
-        .catch((err) => {
-          console.log(err);
-          return res.render("/profile", {
-            errorMessage: "something went really wrong!!",
-          });
         });
-    });
+      })
+      .catch((err) => {
+        console.log(err);
+        return res.render("/profile", {
+          errorMessage: "something went really wrong!!",
+        });
+      });
   }
 );
-module.exports = router;
 
+router.post("/edit/:dynamic/update", isLoggedIn, (req, res) => {
+  const { action, actionEndDate, status } = req.body;
+  console.log("LOOOOOOOOK", req.body);
+  Action.findByIdAndUpdate(
+    req.params.dynamic,
+    { action, actionEndDate, status },
+    { new: true }
+  ).then((newObj) => {
+    // console.log("newObj:", newObj);
+    res.redirect("/profile");
+  });
+});
+
+module.exports = router;
