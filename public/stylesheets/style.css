@@ -8,11 +8,11 @@ a {text-decoration: none;}
 
 }
 
-.btn-primary { 
-  background-color:#4059FF !important;
+.btn-outline-primary{ 
   border-color: none !important;
   border-radius: 4px !important;
   padding: 8px 15px 8px 15px;
+  color: black !important;
 }
 
 .btn-primary:hover {
@@ -30,7 +30,8 @@ body {
   margin: 30px;
   top: 0;
   display: inline;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
 }
 
 html {
@@ -38,10 +39,6 @@ html {
   padding: 0;
 }
 
-
-h1 {
-  color: 15px;
-}
 
 nav {
   background-color: white;
@@ -55,15 +52,64 @@ nav {
 }
 
 
-
-
 .okra {
-  font-family: 'Open Sans', sans-serif;
-  color: #554949;
-  font-size: 25px;
+  font-family: 'Quicksand', sans-serif;
+    color: #554949;
+  font-size: 28px;
   font: weight 700;
   display: flex;
   align-items: center;
+  margin-left: 20px;
+}
+
+input{
+  color: black !important;
+  width: 100%;
+  height: 45px;
+  margin: 8px 0;
+  padding-left: 10px;
+  box-sizing: border-box;
+
+}
+
+
+.signUpButton{ 
+  background-color: Transparent;
+  border-color: none !important;
+  text-decoration: none;
+  border: none !important;
+  color: black;
+
+}
+
+.loginForm{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-left: 25%;
+  margin-right: 25%;
+  margin-top: 5%;
+  max-width: 390px;
+  
+}
+
+.welcomeMessage { 
+  font-family: 'Quicksand', sans-serif;
+
+
+}
+h1{
+  font-family: 'Noto Sans JP', sans-serif;
+font-size: 48px;
+}
+
+h2 { 
+  font-size: 24px;
+}
+
+button{
+  max-width: 100%;
+  
 }
 
 /*# sourceMappingURL=style.css.map */
