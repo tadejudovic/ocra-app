@@ -68,7 +68,7 @@ router.post("/new-action/:objectiveId", isLoggedIn, (req, res) => {
 
 router.get(
   "/delete/:dynamic",
-  /*isLoggedIn,*/ (req, res) => {
+  /*isLoggedIn,*/(req, res) => {
     Action.findById(req.params.dynamic).then((event) => {
       if (!event) {
         return res.redirect("/");
@@ -89,7 +89,7 @@ router.get(
 
 router.get(
   "/edit/:dynamic",
-  /*isLoggedIn*/ (req, res) => {
+  /*isLoggedIn*/(req, res) => {
     Action.findById(req.params.dynamic)
       .then((action) => {
         console.log("wazzaa:", action);
@@ -114,24 +114,6 @@ router.get(
       });
   }
 );
-<<<<<<< HEAD
-
-router.post("/edit/:dynamic", /*isLoggedIn,*/ (req,res)=> {
-  const {action,actionEndDate}=req.body;
-  Action.findByIdAndUpdate(
-    req.params.dynamic,
-    {action,actionEndDate},
-    {new:true}
-  )
-.then((newAction)=>
-res.redirect("/profile")
-)
-})
-
-
-module.exports = router;
-=======
->>>>>>> dev
 
 router.post("/edit/:dynamic/update", isLoggedIn, (req, res) => {
   const { action, actionEndDate, status } = req.body;

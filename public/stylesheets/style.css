@@ -1,3 +1,30 @@
+/* Remove text decoration from visited links */ 
+
+a {text-decoration: none;}
+
+.signUpLoginButtons{ 
+  display: flex;
+  justify-content:flex-end;
+
+}
+
+.btn-primary { 
+  background-color:#4059FF !important;
+  border-color: none !important;
+  border-radius: 4px !important;
+  padding: 8px 15px 8px 15px;
+}
+
+.btn-primary:hover {
+  background-color:#6478FA !important;
+  cursor: pointer;
+}
+
+.loginButton a:visited {
+  color: black;
+  text-decoration:none;
+}
+
 body {
   padding: 0;
   margin: 30px;
@@ -7,36 +34,36 @@ body {
 }
 
 html {
-  margin: 30px;
+  margin: 0px;
   padding: 0;
 }
 
-a {
-  color: #00b7ff;
-}
 
 h1 {
   color: 15px;
 }
 
 nav {
-  padding-top: 10px;
-  padding-bottom: 10px;
   background-color: white;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.08);
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: first-baseline;
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.08);
   padding-left: 20px;
   padding-right: 30px;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  
 }
 
+
+
+
 .okra {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   color: #554949;
-  font-size: 18px;
-  font-weight: 400;
+  font-size: 25px;
+  font: weight 700;
+  display: flex;
+  align-items: center;
 }
 
 /*# sourceMappingURL=style.css.map */
