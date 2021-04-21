@@ -8,19 +8,28 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <title>{{title}}</title>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
       <link rel="stylesheet" href="/stylesheets/style.css" />
-      <style>
-         @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+      <link rel="preconnect" href="https://fonts.gstatic.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com">
+
       </style>
+
+      <link rel="preconnect" href="https://fonts.gstatic.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com">
+      <link
+         href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&family=Quicksand:wght@500&display=swap"
+         rel="stylesheet">
    </head>
 
 
    </nav>
    {{#if user}}
 
-   <br>
 
-   <br>
    <nav>
       <div class="navbar"></div>
 
@@ -30,12 +39,14 @@
    </nav>
    {{else}}
    <nav>
-      <div class="okra">Ocra</div>
-      <div class="signuplogin">
-         <a href="/auth/signup">Signup</a>
-         <a href="/auth/login">Login</a>
 
+      <div class="okra">Ocra</div>
+      <div class="signUpLoginButtons">
+         <a href="/auth/login" class="btn btn-link">Login</a>
+         <a href="/auth/signup" class="btn btn-primary">Start Now</a>
       </div>
+
+
    </nav>
    {{/if}}
    {{{body}}}
