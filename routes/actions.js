@@ -69,13 +69,21 @@ router.post("/new-action/:objectiveId", isLoggedIn, (req, res) => {
 router.get(
   "/delete/:dynamic",
   /*isLoggedIn,*/ (req, res) => {
-    Action.findById(req.params.dynamic).then((event) => {
-      if (!event) {
+    Action.findById(req.params.dynamic).then((action) => {
+      if (!action) {
         return res.redirect("/");
       }
-      if (!event.user.includes(req.session._id)) {
+      if (!action.user.include(req.session._id)) {
         return res.redirect("/");
       }
+
+      return Objective.findByIdAndUpdate(
+        action.objectives,
+        {
+          $pull: { action: action._id },
+        },
+        { new: true }
+      );
     });
     Action.findByIdAndDelete(req.params.dynamic).then(() => {
       return res.redirect("/profile");

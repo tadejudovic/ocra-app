@@ -8,8 +8,11 @@
 <a href="/objectives">Create new goal</a>
 <br />
 <br />
-{{#each objective}}
+
+{{#each objProperties}}
+
 <section style="border: solid 3px; width:600px; color: grey; padding: 10px">
+  <h2>progression: {{this.percentage}}</h2>
   <h2>Problem: {{this.problem}}</h2>
   <h2>Category: {{this.category}}</h2>
   <h2>Goal: {{this.objectiveInput}}</h2>
@@ -18,6 +21,7 @@
   {{#each action}}
   <section style="border: solid 3px; width:400px; color: grey; padding: 10px">
     <h2>Action: {{this.action}}</h2>
+    <h2>Status: {{this.status}}</h2>
     <a href="/actions/delete/{{this._id}}">Delete Action</a>
     <br />
     <a href="/actions/edit/{{this._id}}">Edit Action</a>
@@ -39,3 +43,4 @@
   <br />
 </section>
 {{/each}}
+<br />

@@ -22,31 +22,6 @@ router.get("/", isLoggedIn, (req, res) => {
 
 // Push data from form the the profile page (this is where we're gonna show a list of problems, objectives, actions)
 
-// router.post("/new-objective", (req, res) => {
-//   const {
-//     problem,
-//     category,
-//     objectiveInput,
-//     ObjectiveEndDate,
-//     keyResult,
-//   } = req.body;
-//   console.log(req.body);
-
-//   return Objective.create({
-//     problem,
-//   })
-//     .then((createObjective) => {
-//       console.log(createObjective);
-//       return res.redirect("/profile");
-//     })
-//     .catch((error) => {
-//       console.log(error);
-//       return res.render("actions", {
-//         errorMessage: "something went really wrong!!",
-//       });
-//     });
-// });
-
 router.post("/new-objective", isLoggedIn, (req, res) => {
   // console.log(req.body.objectiveEndDate);
   const {
@@ -98,17 +73,23 @@ router.post("/new-objective", isLoggedIn, (req, res) => {
 });
 
 router.get("/delete/:mufasa", isLoggedIn, (req, res) => {
-  Objective.findById(req.params.mufasa).then((event) => {
-    if (!event) {
-      return res.redirect("/");
-    }
-    if (!event.user.includes(req.session._id)) {
-      return res.redirect("/");
-    }
-  });
-  Objective.findByIdAndDelete(req.params.mufasa).then(() => {
-    return res.redirect("/profile");
-  });
+  Objective.findById(req.params.mufasa)
+    .populate("user")
+    .then((objective) => {
+      if (!objective) {
+        return res.redirect("/");
+      }
+
+      if (objective.user._id.toString() !== req.session.user._id.toString()) {
+        return res.redirect("/");
+      }
+
+      Action.deleteMany({ _id: { $in: objective.action } }).then(() => {
+        Objective.findByIdAndDelete(req.params.mufasa).then(() => {
+          res.redirect("/profile");
+        });
+      });
+    });
 });
 
 router.get("/edit/:random", isLoggedIn, (req, res) => {

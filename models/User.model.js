@@ -28,7 +28,8 @@ const userSchema = new Schema({
   },
   profilePic: {
     type: String,
-    default: "",
+    default:
+      "https://res.cloudinary.com/dczamxzfb/image/upload/v1618740529/ocra-app-project/r0yxm8kqlsbavskslepl.png",
   },
 });
 
