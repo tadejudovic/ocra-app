@@ -77,15 +77,7 @@ input {
   color: black;
 }
 
-.loginForm {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  margin-left: 25%;
-  margin-right: 25%;
-  margin-top: 5%;
-  max-width: 390px;
-}
+
 
 .welcomeMessage {
   font-family: "Quicksand", sans-serif;
