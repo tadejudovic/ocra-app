@@ -1,0 +1,11 @@
+/* All the style that apply uniquely to the login form */ 
+
+.loginForm {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-left: 25%;
+  margin-right: 25%;
+  margin-top: 5%;
+  max-width: 390px;
+}
