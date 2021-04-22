@@ -16,13 +16,13 @@ const isLoggedIn = require("../middlewares/isLoggedIn");
 
 // Render Objectives form
 
-router.get("/", isLoggedIn, (req, res) => {
+router.get("/", /*isLoggedIn*,/ (req, res) => {
   res.render("objectives-form", { user: req.session.user });
 });
 
 // Push data from form the the profile page (this is where we're gonna show a list of problems, objectives, actions)
 
-router.post("/new-objective", isLoggedIn, (req, res) => {
+router.post("/new-objective", /*isLoggedIn,*/ (req, res) => {
   // console.log(req.body.objectiveEndDate);
   const {
     problem,
