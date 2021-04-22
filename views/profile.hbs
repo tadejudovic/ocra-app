@@ -13,7 +13,7 @@
         {{/with}}
         <section class="userbutton">
 
-          <a href="/profile/edit" class="userEdit">EDIT</a>
+          <a href="/profile/edit" class="btn btn-primary">EDIT</a>
 
 
         </section>
@@ -29,6 +29,8 @@
   </section>
 
   {{#each objProperties}}
+
+
 
   <section class="goal">
     <p id="cat"> {{this.category}}</p>
@@ -73,12 +75,17 @@
 
     <section class="bottunObj">
       <a href="/objectives/delete/{{this._id}}" id="deleteButton">DELETE</a>
-      <a href="/objectives/edit/{{this._id}}" class="editObjectiveButton">EDIT OBJECTIVE</a>
+      <a href="/objectives/edit/{{this._id}}" class="btn btn-primary">EDIT OBJECTIVE</a>
 
 
     </section>
 
   </section>
   {{/each}}
+
+  <section class="addobjectiveBox">
+    <a href="/objectives" class="goalButton"> +</a>
+
+  </section>
 
 </section>

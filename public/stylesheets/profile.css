@@ -10,7 +10,7 @@
   margin-top: 50px;
   margin-bottom: 50px;
   padding-bottom: 30px;
-  border-bottom: solid 1px rgb(74, 75, 77);
+  border-bottom: solid 1px rgb(158, 159, 160);
 }
 
 #usertextButton {
@@ -36,6 +36,12 @@
   align-items: center;
   font-size: 30px;
   box-shadow: 0 0 5px rgb(121, 119, 119);
+  position: fixed;
+  bottom: 200px;
+  right: 200px;
+}
+.goalButton:hover {
+  text-decoration: none;
 }
 
 .addobjectiveBox {
@@ -154,6 +160,7 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  align-items: center;
 }
 
 #actiondescription {
@@ -189,4 +196,9 @@
 
 #deleteButton {
   margin-right: 30px;
+}
+
+.positionPlusButton {
+  display: flex;
+  flex-direction: row;
 }

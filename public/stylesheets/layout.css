@@ -12,7 +12,10 @@ html {
   background-color: rgb(243, 243, 243);
 }
 
-/* Button Styling */ 
+p {
+  font-family: "Google Sans", Arial, Helvetica, sans-serif;
+}
+/* Button Styling */
 
 .btn-outline-primary {
   border-color: none !important;
@@ -26,16 +29,14 @@ html {
   cursor: pointer;
 }
 
-
-/* Button Styling - Visite Button */ 
+/* Button Styling - Visite Button */
 
 .loginButton a:visited {
   color: black;
   text-decoration: none;
 }
 
-
-/* Body Default font */ 
+/* Body Default font */
 
 body {
   /*padding: 0;*/
@@ -46,14 +47,24 @@ body {
   font-size: 16px;
 }
 
-
-
 nav {
   background-color: white;
   box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.08);
   padding-left: 20px;
   padding-right: 30px;
   display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+.loginNav {
+  background-color: white;
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.08);
+  padding-left: 20px;
+  padding-right: 30px;
+  display: flex;
+  align-items: center;
   justify-content: space-between;
   padding-bottom: 10px;
   padding-top: 10px;
@@ -84,12 +95,9 @@ input {
   color: black;
 }
 
-
-
 .welcomeMessage {
   font-family: "Quicksand", sans-serif;
 }
-
 
 h1 {
   font-family: "Google Sans", Arial, Helvetica, sans-serif;

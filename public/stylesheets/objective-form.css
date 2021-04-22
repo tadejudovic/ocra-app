@@ -16,7 +16,7 @@
   width: 500px;
   padding: 40px;
   border-radius: 5px;
-  box-shadow: 0 0 5px black;
+  box-shadow: 1px 1px 1px rgb(199, 199, 199);
 }
 
 .objFormText {
@@ -45,6 +45,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
+  margin-top: 20px;
 }
 
 #category {
@@ -60,4 +61,8 @@
   font-size: 17px;
   padding-bottom: 20px;
   border-bottom: solid 1px grey;
+}
+
+.back {
+  padding-right: 20px;
 }
