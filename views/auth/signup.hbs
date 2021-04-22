@@ -1,7 +1,10 @@
 {{#if errorMessage}}
 <p>{{errorMessage}}</p>
 {{/if}}
-<form action="/auth/signup" method="POST">
+<form class="signUpForm" action="/auth/signup" method="POST">
+
+   <h2>Before your start planning your life-goals, let's get you setup first.</h2>
+   <br>
    <input type="text" name="name" placeholder="Name" required>
 
    <input type="text" name="surname" placeholder="Surname" required>
@@ -10,5 +13,11 @@
 
    <input type="password" name="password" placeholder="Password">
 
-   <button type="submit">Submit</button>
+   <!-- <button type="submit">Submit</button> -->
+   <br>
+   <a class="btn btn-outline-primary"> <button type="submit" class="signUpButton">Sign Up</button>
+   </a>
+
 </form>
+
+</div>

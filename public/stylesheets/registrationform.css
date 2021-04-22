@@ -1,6 +1,6 @@
 /* All the style that apply uniquely to the login form */ 
 
-.loginForm {
+.signUpForm{
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -12,7 +12,7 @@
 
   background-color: white;
   border-radius: 5px;
-  padding: 10% 5% 10% 5%;
+  padding: 7% 5% 7% 5%;
   box-shadow: 1px 1px 1px rgb(199, 199, 199);
 }
 
@@ -22,3 +22,4 @@
   display: flex;
   justify-content: flex-end;
 }
+
