@@ -102,13 +102,13 @@ router.post("/login", shouldNotBeLoggedIn, (req, res, next) => {
   if (!email) {
     return res
       .status(400)
-      .render("login", { errorMessage: "Please provide your username." });
+      .render("auth/login", { errorMessage: "Please provide your username." });
   }
 
   // Here we use the same logic as above
   // - either length based parameters or we check the strength of a password
   if (password.length < 8) {
-    return res.status(400).render("login", {
+    return res.status(400).render("auth/login", {
       errorMessage: "Your password needs to be at least 8 characters long.",
     });
   }
@@ -120,7 +120,7 @@ router.post("/login", shouldNotBeLoggedIn, (req, res, next) => {
       if (!user) {
         return res
           .status(400)
-          .render("login", { errorMessage: "Wrong credentials." });
+          .render("auth/login", { errorMessage: "Wrong credentials." });
       }
 
       // If user is found based on the username, check if the in putted password matches the one saved in the database
@@ -128,7 +128,7 @@ router.post("/login", shouldNotBeLoggedIn, (req, res, next) => {
         if (!isSamePassword) {
           return res
             .status(400)
-            .render("login", { errorMessage: "Wrong credentials." });
+            .render("auth/login", { errorMessage: "Wrong credentials." });
         }
         req.session.user = user;
         // req.session.user = user._id; // ! better and safer but in this case we saving the entire user object

@@ -21,16 +21,12 @@ router.post("/new-action/:objectiveId", isLoggedIn, (req, res) => {
 
   //console.log(req.body);
   if (!action || !actionEndDate) {
-    return res.render("actions", {
-      errorMessage: "You need to write a description",
-    });
+    return res.redirect(`/actions/new-action/${objId}`);
   }
 
   Action.findOne({ action }).then((found) => {
     if (found) {
-      return res.render("actions", {
-        errorMessage: "You have already add this action",
-      });
+      return res.redirect(`/actions/new-action/${objId}`);
     }
 
     Action.create({
