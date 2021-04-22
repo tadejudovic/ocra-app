@@ -1,19 +1,32 @@
-<form action="/objectives/new-objective" method="POST">
-  <input type="text" name="problem" placeholder="Describe the problem you want to solve">
-  <select name="category" id="">
-    <option name="Financial">Financial</option>
-    <option name="Career">Career</option>
-    <option name="Relationship">Relationship</option>
-    <option name="Wellbeing">Wellbeing</option>
-    <option name="Passion">Passion</option>
+<section class="backgroundForm">
 
-  </select>
+  <section class="form">
 
-  <input type="text" name="objectiveInput" placeholder="Describe the change you want to see">
-  <input type="text" name="keyResult" placeholder="Provide one key results ">
-  <input type="date" name="objectiveEndDate">
+    <form action="/objectives/new-objective" method="POST" class="objForm">
+      <h3 id="title"> create your plan!</h3>
+      <p class="objFormText"> What's the category of your goal?</p>
+      <select name="category" id="category" class="inputObjForm">
+        <option name="Financial">Financial</option>
+        <option name="Career">Career</option>
+        <option name="Relationship">Relationship</option>
+        <option name="Wellbeing">Wellbeing</option>
+        <option name="Passion">Passion</option>
+      </select>
+      <p class="objFormText"> What's the problem you want to solve for you or other?</p>
+      <input type="text" name="problem" placeholder="Describe the problem you want to solve" class="inputObjForm">
+      <p class="objFormText"> What change would you like to see?</p>
+      <input type="text" name="objectiveInput" placeholder="Describe the change you want to see" class="inputObjForm">
+      <p class="objFormText"> Input your a key result...</p>
+      <input type="text" name="keyResult" placeholder="Provide one key results " class="inputObjForm">
+      <p class="objFormText"> When do you wnat to achieve this by?</p>
+      <input type="date" name="objectiveEndDate" class="inputObjForm" id="date">
 
+      <section class="button">
+        <a href="/profile"> BACK</a>
+        <button type="submit" class="objButton">CONFIRM</button>
 
-  <button type="submit">Submit</button>
+      </section>
 
-</form>
+    </form>
+  </section>
+</section>

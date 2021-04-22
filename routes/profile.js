@@ -64,6 +64,7 @@ router.get("/edit", isLoggedIn, (req, res) => {
 
 router.post("/edit", isLoggedIn, parser.single("profilePic"), (req, res) => {
   const profilePicture = req.file?.path;
+  console.log("wewewe:", profilePicture);
   const { name, locations, email, surname } = req.body;
   const newUser = {
     name,

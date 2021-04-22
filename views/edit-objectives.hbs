@@ -1,49 +1,51 @@
-<h1> welcome {{user.name}} to the edit page of {{obj.problem}}</h1>
+{{!-- <p> {{user.name}} to the edit page of {{obj.problem}}</p> --}}
 
-<a href="/profile">Go to my profile</a>
+{{!-- <a href="/profile">Go to my profile</a> --}}
 
-<br />
-<br />
-{{#with obj}}
+<section class="backgroundForm">
+
+  <section class="form">
+    {{#with obj}}
+    <form method="POST" action="/objectives/edit/{{objectiveId}}/update" class="objForm">
+      <h3 id="title"> edit your plan</h3>
+      <label for="" class="objFormText">What's the category of your goal?</label>
+      <select name="category" id="category" class="inputObjForm">
+        <option value="{{currentObjCategory}}" selected>{{currentObjCategory}}</option>
+        {{#each categories}}
+        <option value="{{this}}">{{this}}</option>
+        {{/each}}
+      </select>
+
+      <label class="objFormText">What's the problem you want to solve for you or other?</label>
+      <input name="problem" value="{{problem}}">
+
+      <label for="" class="objFormText">What change would you like to see?</label>
+      <input name="objectiveInput" value="{{objectiveInput}}">
+
+      <label for="" class="objFormText">Input your a key result...</label>
+      <input name="keyResult" value="{{keyResult}}">
+
+      <label for="" class="objFormText">When do you wnat to achieve this by?</label>
+      <input type="date" name="objectiveEndDate" value={{objectiveEndDate}}>
+
+      <label for="" class="objFormText">Status</label>
+      <select name="status" id="status" class="inputObjForm">
+        <option value="{{currentStatus}}" selected>{{currentStatus}}</option>
+        {{#each statusList}}
+        <option value="{{this}}">{{this}}</option>
+        {{/each}}
+      </select>
+
+      <section class="button">
+        <a href="/profile"> BACK</a>
+        {{!-- <a href="/actions/{{this._id}}">Create your action!</a> --}}
+        <button type="submit" class="objButton">SAVE</button>
+
+      </section>
+
+    </form>
+    {{/with}}
+  </section>
 
 
-<form method="POST" action="/objectives/edit/{{objectiveId}}/update">
-
-  <br>
-  <label>Problem</label>
-  <input name="problem" value="{{problem}}">
-
-  <br>
-  <label for="">objectiveEndDate</label>
-  <input type="date" name="objectiveEndDate" value={{objectiveEndDate}}>
-  <br>
-  <label for="">objectiveInput</label>
-  <input name="objectiveInput" value="{{objectiveInput}}">
-  <br>
-  <label for="">keyResult</label>
-  <input name="keyResult" value="{{keyResult}}">
-  <br>
-  <label for="">category</label>
-  <select name="category" id="category">
-    <option value="{{currentObjCategory}}" selected>{{currentObjCategory}}</option>
-    {{#each categories}}
-    <option value="{{this}}">{{this}}</option>
-    {{/each}}
-  </select>
-  <br>
-  <label for="">Status</label>
-  <select name="status" id="status">
-    <option value="{{currentStatus}}" selected>{{currentStatus}}</option>
-    {{#each statusList}}
-    <option value="{{this}}">{{this}}</option>
-    {{/each}}
-  </select>
-
-  <button type="submit">Edit your objective</button>
-</form>
-
-<br />
-<a href="/actions/{{this._id}}">Create the actions you need to achieve your goal!</a>
-<br />
-
-{{/with}}
+</section>

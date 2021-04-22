@@ -1,46 +1,86 @@
-{{#with user}}
-<h1> {{name}}</h1>
-<img src="{{profilePic}}">
-{{/with}}
-<br />
-<a href="/profile/edit">Edit my profile</a>
-<br />
-<a href="/objectives">Create new goal</a>
-<br />
-<br />
+<section class="mainBox">
 
-{{#each objProperties}}
 
-<section style="border: solid 3px; width:600px; color: grey; padding: 10px">
-  <h2>progression: {{this.percentage}}</h2>
-  <h2>Problem: {{this.problem}}</h2>
-  <h2>Category: {{this.category}}</h2>
-  <h2>Goal: {{this.objectiveInput}}</h2>
-  <h2>End Date: {{this.objectiveEndDate}}</h2>
-  <h2>Result: {{this.keyResult}}</h2>
-  {{#each action}}
-  <section style="border: solid 3px; width:400px; color: grey; padding: 10px">
-    <h2>Action: {{this.action}}</h2>
-    <h2>Status: {{this.status}}</h2>
-    <a href="/actions/delete/{{this._id}}">Delete Action</a>
-    <br />
-    <a href="/actions/edit/{{this._id}}">Edit Action</a>
-    <br />
+  <section class="user">
+
+    <section class="nameAndPic">
+      {{#with user}}
+      <img src="{{profilePic}}" class="picture">
+
+      <section id="usertextButton">
+
+
+        <p id="name"> {{name}}, how about we smash some goals today?</p>
+
+        {{/with}}
+        <section class="userbutton">
+
+          <a href="/profile/edit" class="userEdit">EDIT</a>
+
+
+        </section>
+
+      </section>
+    </section>
+  </section>
+
+
+  <section class="addobjectiveBox">
+    <a href="/objectives" class="goalButton"> +</a>
+
+  </section>
+
+  {{#each objProperties}}
+
+  <section class="goal">
+    <p id="cat"> {{this.category}}</p>
+    <p id="prob">Problem: {{this.problem}}</p>
+    <p id="obj"> <b> Objective: {{this.objectiveInput}} </b></p>
+    <p id="prob"> Result: {{this.keyResult}}</p>
+
+
+    <section class="dueDateProgress">
+      <p id="date">Due Date: {{this.objectiveEndDate}}</p>
+      {{#if action}}
+      <p id="progress">Progress: {{this.percentage}}</p>
+      {{else}}
+      <p id="progress">Progress: 0%</p>
+      {{/if}}
+    </section>
+
+    <section>
+      {{#if action}}
+      <p id="actionTitle">Action:</p>
+      {{else}}
+      {{/if}}
+    </section>
+
+
+    {{#each action}}
+    <section class="actionList">
+      <p id="actiondescription"> {{this.action}}</p>
+
+
+      <section class="actionButton">
+        <p> {{this.status}}</p>
+        <a href="/actions/delete/{{this._id}}">Delete</a>
+        <a href="/actions/edit/{{this._id}}">Edit</a>
+      </section>
+    </section>
+    {{/each}}
+    <section class="addActionButton">
+      <a href=" /actions/new-action/{{this._id}}" id="addActionButton">Add Action</a>
+    </section>
+
+
+    <section class="bottunObj">
+      <a href="/objectives/delete/{{this._id}}" id="deleteButton">DELETE</a>
+      <a href="/objectives/edit/{{this._id}}" class="editObjectiveButton">EDIT OBJECTIVE</a>
+
+
+    </section>
+
   </section>
   {{/each}}
-  <br />
-  <br />
-  <a href="/objectives/delete/{{this._id}}">Delete the Problem</a>
-  <br />
-  <br />
-  <a href="/objectives/edit/{{this._id}}">Edit the Problem</a>
-  <br />
-  <br />
-  <a href="/actions/new-action/{{this._id}}">Create New action</a>
 
-
-
-  <br />
 </section>
-{{/each}}
-<br />

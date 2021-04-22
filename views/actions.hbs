@@ -1,9 +1,19 @@
-<a href="/profile">Go to my profile</a>
+<section class="backgroundForm">
+  <section class="form">
 
-<form action="/actions/new-action/{{objectiveId}}" method="POST">
-  <input type="text" name="action" placeholder="Describe your action">
-  <input type="date" name="actionEndDate">
 
-  <button type="submit">Submit</button>
 
-</form>
+    <form action="/actions/new-action/{{objectiveId}}" method="POST" class="objForm">
+      <p class="objFormText"> Describe your action</p>
+      <input type="text" name="action" placeholder="Describe your action">
+      <p class="objFormText"> When do you wnat to achieve this by?</p>
+      <input type="date" name="actionEndDate">
+
+      <section class="button">
+        <a href="/profile">BACK</a>
+        <button type="submit" class="objButton">SAVE</button>
+      </section>
+    </form>
+
+  </section>
+</section>

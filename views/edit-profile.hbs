@@ -1,23 +1,32 @@
-<h6>Welcome to your edit page</h6>
+{{!-- <h6>Welcome to your edit page</h6> --}}
 
-{{#with user}}
 
-<form method="POST" action="/profile/edit" enctype="multipart/form-data">
-  <label for="">Name</label>
-  <input name="name" value="{{name}}">
-  <label for="">Surname</label>
-  <input name="surname" value="{{surname}}">
-  <br>
-  <label>Location</label>
-  <input name="locations" value="{{locations}}">
-  <br>
-  <label for="">Email</label>
-  <input type="email" name="email" value={{email}}>
-  <br>
-  <label for="">Picture</label>
-  <input type="file" name="profilePic">
 
-  <button type=" submit">Edit your profile</button>
-</form>
+<section class="backgroundForm">
+  <section class="form">
+    {{#with user}}
 
-{{/with}}
+    <form method="POST" action="/profile/edit" enctype="multipart/form-data" class="objForm">
+      <label for="" class="objFormText">Name</label>
+      <input name="name" value="{{name}}">
+      <label for="" class="objFormText">Surname</label>
+      <input name="surname" value="{{surname}}">
+      <br>
+      <label class="objFormText">Location</label>
+      <input name="locations" value="{{locations}}">
+      <br>
+      <label for="" class="objFormText">Email</label>
+      <input type="email" name="email" value={{email}}>
+      <br>
+      <label for="" class="objFormText">Picture</label>
+      <input type="file" name="profilePic">
+      <section class="button">
+        <a href="/profile"> BACK</a>
+        <button type=" submit" class="objButton">SAVE</button>
+      </section>
+    </form>
+
+    {{/with}}
+
+  </section>
+</section>

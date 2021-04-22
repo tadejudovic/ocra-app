@@ -1,0 +1,63 @@
+.backgroundForm {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.form {
+  display: flex;
+  align-items: center;
+}
+
+.objForm {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  margin: 100px;
+  width: 500px;
+  padding: 40px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px black;
+}
+
+.objFormText {
+  color: grey;
+  margin: 20px 0px 5px 0px;
+}
+
+.inputObjForm {
+  height: 50px;
+}
+
+.objButton {
+  margin: 20px 0px;
+  width: 25%;
+  height: 40px;
+  border: 1px;
+  background-color: blue;
+  color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 5px black;
+  margin-left: 20px;
+}
+
+.button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+#category {
+  color: black;
+}
+
+#date {
+  color: grey;
+}
+
+#title {
+  color: blue;
+  font-size: 17px;
+  padding-bottom: 20px;
+  border-bottom: solid 1px grey;
+}

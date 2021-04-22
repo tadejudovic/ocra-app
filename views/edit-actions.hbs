@@ -1,23 +1,28 @@
-<h1>This page is for editing action</h1>
+{{!-- <h1>This page is for editing action</h1>
 
-<a href="/profile">Go to my profile</a>
-<br />
-<br />
+<a href="/profile">Go to my profile</a> --}}
+<section class="backgroundForm">
+  <section class="form">
 
-{{#with action}}
+    {{#with action}}
+    <form action="/actions/edit/{{actionId}}/update" method="POST" class="objForm">
+      <p class="objFormText"> Describe your action</p>
+      <input name="action" value="{{action}}">
+      <p class="objFormText"> When do you wnat to achieve this by?</p>
+      <input type="date" name="actionEndDate" value={{actionEndDate}}>
 
-<form action="/actions/edit/{{actionId}}/update" method="POST">
-
-  <input name="action" value="{{action}}">
-  <input type="date" name="actionEndDate" value={{actionEndDate}}>
-  <label for="">Status</label>
-  <select name="status" id="status">
-    <option value="{{currentStatus}}" selected>{{currentStatus}}</option>
-    {{#each statusList}}
-    <option value="{{this}}">{{this}}</option>
-    {{/each}}
-  </select>
-  <button type="submit">Make Changes</button>
-
-</form>
-{{/with}}
+      <label for="" class="objFormText">Status</label>
+      <select name="status" id="status" class="inputObjForm">
+        <option value="{{currentStatus}}" selected>{{currentStatus}}</option>
+        {{#each statusList}}
+        <option value="{{this}}">{{this}}</option>
+        {{/each}}
+      </select>
+      <section class="button">
+        <a href="/profile"> BACK</a>
+        <button type="submit" class="objButton">SAVE</button>
+      </section>
+    </form>
+    {{/with}}
+  </section>
+</section>
