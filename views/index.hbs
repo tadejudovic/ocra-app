@@ -2,5 +2,32 @@
   @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 </style>
 
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+{{!-- <h1>{{title}}</h1>
+<p>Welcome to {{title}}</p> --}}
+
+<form action="/auth/login" method="POST">
+
+  <div class="loginForm">
+    <h1>Design, track and hit your life-goals with Ocra </h1>
+    <br>
+    <h2>Let's get you logged in first. </h2>
+
+    <label>
+      <input type="email" name="email" placeholder="manwiththeplan@email.com">
+    </label>
+
+    <label>
+      <input type="password" name="password" placeholder="**********">
+    </label>
+    <br>
+
+    <section class="btn btn-outline-primary">
+
+      <button type="submit" class="signUpButton">Log In</button>
+
+      <br>
+
+    </section>
+
+  </div>
+</form>
