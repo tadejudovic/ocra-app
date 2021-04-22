@@ -22,7 +22,8 @@ router.get("/", isLoggedIn, (req, res, next) => {
 
         let progress = statusArr.filter((ele) => ele === "Completed").length;
 
-        const percentage = (progress / statusArr.length) * 100 + "%";
+        const percentage =
+          Math.floor((progress / statusArr.length) * 100) + "%";
 
         return {
           ...el.toJSON(),
